@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		850813C501C9A778462D0C91 /* Pods_PassiveViewMVP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F5791978E2592E2FCD1CBC /* Pods_PassiveViewMVP.framework */; };
 		AF09D40925A0119B00F39FC7 /* SearchUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D40825A0119B00F39FC7 /* SearchUserModel.swift */; };
 		AF09D40B25A080AD00F39FC7 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D40A25A080AD00F39FC7 /* UserCell.swift */; };
+		AF09D40D25A0C11D00F39FC7 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D40C25A0C11D00F39FC7 /* UserDetailModel.swift */; };
+		AF09D40F25A0CF9700F39FC7 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D40E25A0CF9700F39FC7 /* RepositoryCell.swift */; };
+		AF09D41125A0D4A600F39FC7 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D41025A0D4A600F39FC7 /* UserDetailViewController.swift */; };
+		AF09D41325A0D4D700F39FC7 /* UserDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF09D41225A0D4D700F39FC7 /* UserDetailPresenter.swift */; };
 		AF447D4025A00D5900A70B47 /* GitHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF447D3E25A00D3B00A70B47 /* GitHub.framework */; };
 		AF447D4125A00D5900A70B47 /* GitHub.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AF447D3E25A00D3B00A70B47 /* GitHub.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AFB7CF52259F606800FE9CD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB7CF51259F606800FE9CD7 /* AppDelegate.swift */; };
@@ -65,6 +69,10 @@
 		993C8F8E1CD1F5B3BFB908F4 /* Pods_PassiveViewMVPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PassiveViewMVPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF09D40825A0119B00F39FC7 /* SearchUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserModel.swift; sourceTree = "<group>"; };
 		AF09D40A25A080AD00F39FC7 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		AF09D40C25A0C11D00F39FC7 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
+		AF09D40E25A0CF9700F39FC7 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		AF09D41025A0D4A600F39FC7 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		AF09D41225A0D4D700F39FC7 /* UserDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPresenter.swift; sourceTree = "<group>"; };
 		AF447D3E25A00D3B00A70B47 /* GitHub.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GitHub.framework; sourceTree = "<group>"; };
 		AFB7CF4E259F606800FE9CD7 /* PassiveViewMVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassiveViewMVP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFB7CF51259F606800FE9CD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,7 +143,6 @@
 				BAF8E2B340427E3A3FBDD078 /* Pods-PassiveViewMVPTests.debug.xcconfig */,
 				03E29C8D872CAA60CE317B7A /* Pods-PassiveViewMVPTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -200,7 +207,9 @@
 			isa = PBXGroup;
 			children = (
 				AF09D40A25A080AD00F39FC7 /* UserCell.swift */,
+				AF09D40E25A0CF9700F39FC7 /* RepositoryCell.swift */,
 				AFB7CF84259F630F00FE9CD7 /* SearchUserViewController.swift */,
+				AF09D41025A0D4A600F39FC7 /* UserDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				AF09D40825A0119B00F39FC7 /* SearchUserModel.swift */,
+				AF09D40C25A0C11D00F39FC7 /* UserDetailModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				AFB7CF86259F64C800FE9CD7 /* SearchUserPresenter.swift */,
+				AF09D41225A0D4D700F39FC7 /* UserDetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -460,10 +471,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF09D40F25A0CF9700F39FC7 /* RepositoryCell.swift in Sources */,
 				AFB7CF5C259F606800FE9CD7 /* PassiveViewMVP.xcdatamodeld in Sources */,
+				AF09D40D25A0C11D00F39FC7 /* UserDetailModel.swift in Sources */,
 				AFB7CF85259F630F00FE9CD7 /* SearchUserViewController.swift in Sources */,
+				AF09D41325A0D4D700F39FC7 /* UserDetailPresenter.swift in Sources */,
 				AFB7CF52259F606800FE9CD7 /* AppDelegate.swift in Sources */,
 				AFB7CF87259F64C800FE9CD7 /* SearchUserPresenter.swift in Sources */,
+				AF09D41125A0D4A600F39FC7 /* UserDetailViewController.swift in Sources */,
 				AF09D40925A0119B00F39FC7 /* SearchUserModel.swift in Sources */,
 				AFB7CF54259F606800FE9CD7 /* SceneDelegate.swift in Sources */,
 				AF09D40B25A080AD00F39FC7 /* UserCell.swift in Sources */,
