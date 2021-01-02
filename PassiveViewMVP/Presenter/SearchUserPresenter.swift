@@ -42,7 +42,7 @@ final class SearchUserPresenter: SearchUserPresenterInput {
     func didTapSearchButton(text: String?) {
         guard let query = text else { return }
         guard !query.isEmpty else { return }
-        model.searchUsers(query: query) { [weak self] result in
+        model.fetchUsers(query: query) { [weak self] result in
             switch result {
             case .success(let users):
                 self?.users = users

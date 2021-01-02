@@ -10,14 +10,14 @@ import Foundation
 import GitHub
 
 protocol SearchUserModelInput {
-    func searchUsers(
+    func fetchUsers(
         query: String,
         completion: @escaping (Result<[User]>) -> ()
     )
 }
 
 final class SearchUserModel: SearchUserModelInput {
-    func searchUsers(query: String, completion: @escaping (Result<[User]>) -> ()) {
+    func fetchUsers(query: String, completion: @escaping (Result<[User]>) -> ()) {
         let session = GitHub.Session()
         let request = SearchUsersRequest(
             query: query,
