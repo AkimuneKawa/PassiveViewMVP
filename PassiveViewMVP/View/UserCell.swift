@@ -65,6 +65,15 @@ final class UserCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        task?.cancel()
+        task = nil
+        icon.image = nil
+        nameLabel.text = nil
+    }
+    
     func inject(user: User) {
         self.user = user
         
