@@ -19,9 +19,10 @@ final class UserCell: UITableViewCell {
     }
     
     var user: User?
+    private var task: URLSessionTask?
     
-    let icon: UIView = {
-        let icon = UIView(frame: CGRect(x: 0, y: 0, width: Const.iconSize, height: Const.iconSize))
+    let icon: UIImageView = {
+        let icon = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.iconSize, height: Const.iconSize))
         icon.backgroundColor = .gray
         icon.contentMode = .scaleAspectFill
         icon.layer.masksToBounds = true
@@ -66,6 +67,26 @@ final class UserCell: UITableViewCell {
     
     func inject(user: User) {
         self.user = user
+        
+        task = {
+            let url = user.avatarURL
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let imageData = data else { return }
+                
+                DispatchQueue.global(qos: .utility).async { [weak self] in
+                    guard let self = self else { return }
+                    guard let image = UIImage(data: imageData) else { return }
+                    
+                    DispatchQueue.main.async {
+                        self.icon.image = image
+                        self.setNeedsLayout()
+                    }
+                }
+            }
+            task.resume()
+            return task
+        }()
+        
         nameLabel.text = user.login
     }
 }
