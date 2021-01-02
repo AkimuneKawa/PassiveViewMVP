@@ -38,7 +38,7 @@ final class SearchUserViewController: UIViewController {
     
     private func setupViews() {
         searchController.searchBar.delegate = self
-        
+        tableView.delegate = self
         tableView.dataSource = self
         navigationItem.searchController = searchController
         
@@ -58,13 +58,20 @@ extension SearchUserViewController: UISearchBarDelegate {
     }
 }
 
+extension SearchUserViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.didSelectRow(at: indexPath)
+    }
+}
+
 extension SearchUserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfUsers ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as! UserCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.Const.identifier) as! UserCell
         
         if let user = presenter?.user(forRow: indexPath.row) {
             cell.inject(user: user)
@@ -75,6 +82,15 @@ extension SearchUserViewController: UITableViewDataSource {
 }
 
 extension SearchUserViewController: SearchUserPresenterOutput {
+    func transitionToUserDetail(userName: String) {
+        let model = UserDetailModel(userName: userName)
+        let view = UserDetailViewController()
+        let presenter = UserDetailPresenter(userName: userName, view: view, model: model)
+        view.inject(presenter: presenter)
+        
+        navigationController?.pushViewController(view, animated: true)
+    }
+    
     func updateUsers(_ users: [User]) {
         tableView.reloadData()
     }

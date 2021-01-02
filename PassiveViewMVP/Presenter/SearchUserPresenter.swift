@@ -13,10 +13,12 @@ protocol SearchUserPresenterInput {
     var numberOfUsers: Int { get }
     func user(forRow row: Int) -> User?
     func didTapSearchButton(text: String?)
+    func didSelectRow(at indexPath: IndexPath)
 }
 
 protocol SearchUserPresenterOutput: AnyObject {
     func updateUsers(_ users: [User])
+    func transitionToUserDetail(userName: String)
 }
 
 final class SearchUserPresenter: SearchUserPresenterInput {
@@ -55,5 +57,10 @@ final class SearchUserPresenter: SearchUserPresenterInput {
                 // TODO: add error handling
             }
         }
+    }
+    
+    func didSelectRow(at indexPath: IndexPath) {
+        guard let user = user(forRow: indexPath.row) else { return }
+        view?.transitionToUserDetail(userName: user.login)
     }
 }
