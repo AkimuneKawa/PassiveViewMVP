@@ -18,10 +18,10 @@ final class UserCell: UITableViewCell {
         static let cellHeight: CGFloat = iconSize + 20
     }
     
-    var user: User?
+    private var user: User?
     private var task: URLSessionTask?
     
-    let icon: UIImageView = {
+    private let icon: UIImageView = {
         let icon = UIImageView(frame: CGRect(x: 0, y: 0, width: Const.iconSize, height: Const.iconSize))
         icon.backgroundColor = .gray
         icon.contentMode = .scaleAspectFill
@@ -30,7 +30,7 @@ final class UserCell: UITableViewCell {
         return icon
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         return label
